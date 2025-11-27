@@ -78,7 +78,46 @@
             </div>
         </div>
     </section>
+<section id="demo" class="demo-section">
+    <div class="container">
+        <h3>See Our AI in Action: Live Prediction Demo</h3>
+        <p class="section-description">Input a lead's recent activity to instantly see their conversion likelihood and recommended next step.</p>
 
+        <div class="demo-form-container">
+            <form id="lead-demo-form" class="lead-demo-form">
+                <div class="input-group">
+                    <label for="opens">Email Opens (Last 30 Days)</label>
+                    <input type="number" id="opens" name="Email_Opens" min="0" value="10" required>
+                </div>
+                <div class="input-group">
+                    <label for="visits">Website Visits (Last 30 Days)</label>
+                    <input type="number" id="visits" name="Website_Visits" min="0" value="5" required>
+                </div>
+                <div class="input-group">
+                    <label for="time">Total Time Spent (Seconds)</label>
+                    <input type="number" id="time" name="Time_Spent_Sec" min="0" value="180" required>
+                </div>
+                <div class="input-group">
+                    <label for="demo_req">Demo Requested?</label>
+                    <select id="demo_req" name="Demo_Requested" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full-width">Get AI Recommendation</button>
+            </form>
+
+            <div id="prediction-output" class="prediction-output">
+                <h4>AI Prediction Result:</h4>
+                <p id="output-category">Awaiting Input...</p>
+                <p id="output-probability" class="output-prob"></p>
+                <p id="output-recommendation">Your next best step will appear here.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
     <section id="contact" class="cta">
         <div class="container">
             <h2>Ready to Close More Deals?</h2>
