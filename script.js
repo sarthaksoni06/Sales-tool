@@ -14,30 +14,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Simple Form Submission Handling (Simulating Waitlist Sign-up)
-    const form = document.querySelector('.early-access-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = form.querySelector('input[type="email"]');
-            const submitButton = form.querySelector('.btn-primary');
-            const smallText = document.querySelector('.small-text');
+    // --- New Form Handling for AI Prediction Demo ---
+const demoForm = document.getElementById('lead-demo-form');
+const outputCategory = document.getElementById('output-category');
+const outputProbability = document.getElementById('output-probability');
+const outputRecommendation = document.getElementById('output-recommendation');
+const API_URL = 'http://127.0.0.1:5000/predict_lead'; // Matches the Flask URL/Port
 
-            if (emailInput.value) {
-                // Simulate an API call delay
-                submitButton.textContent = 'Submitting...';
-                submitButton.disabled = true;
-
-                setTimeout(() => {
-                    alert(`Thank you for signing up with ${emailInput.value}! You've been added to the early access list.`);
-                    
-                    emailInput.value = ''; // Clear the input
-                    smallText.textContent = 'Success! Check your inbox for updates.';
-                    smallText.style.color = var(--secondary-color); // Optional: change color to green
-
-                    submitButton.textContent = 'Join the Waitlist Today';
-                    submitButton.disabled = false;
-                }, 1500); // 1.5 second delay
-            }
+if (demoForm) {
+    demoForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // 1. Gather form data
+        const formData = new FormData(demoForm);
+        const leadData = {};
+        formData.forEach((value, key) => {
+            // Ensure data is sent as numbers
+            leadData[key] = parseInt(value, 10);
         });
-    }
-});
+
+        // 2. Update UI for loading state
+        outputCategory.textContent = 'Analyzing lead data...';
+        outputProbability.textContent = '';
+        outputRecommendation.textContent = 'Please wait...';
+        const submitButton = demoForm.querySelector('button[type="submit"]');
+        submitButton.textContent = 'Processing...';
+        submitButton.disabled = true;
+
+        // 3. Send data to the Flask API
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(leadData),
+            });
+
+            const result = await response.json();
+
+            // 4. Handle API response
+            if (result.success && result.prediction) {
+                const pred = result.prediction;
+                outputCategory.textContent = pred.category;
+                outputProbability.textContent = `Conversion Probability: ${pred.conversion_probability}%`;
+                outputRecommendation.innerHTML = `**Next Step:** ${pred.recommendation}`;
+            } else {
+                outputCategory.textContent = 'Prediction Error!';
+                outputRecommendation.textContent = result.error || 'Could not get prediction from server.';
+                outputProbability.textContent = '';
+            }
+
+        } catch (error) {
+            console.error('API Call Failed:', error);
+            outputCategory.textContent = 'Connection Error';
+            outputRecommendation.textContent = 'Could not connect to the local API. Ensure `app.py` is running.';
+        } finally {
+            // Reset button state
+            submitButton.textContent = 'Get AI Recommendation';
+            submitButton.disabled = false;
+        }
+    });
+}
+// --- END New Form Handling ---
+
+// The existing simple email sign-up form handling is still needed if you kept that form.
+// You should ensure that the original email form submission handler (for the Hero section)
+// is also present in this script.
