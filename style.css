@@ -1,0 +1,362 @@
+/* --- Global Styles --- */
+:root {
+    --primary-color: #007bff; /* Blue for action */
+    --secondary-color: #28a745; /* Green for success/conversion */
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --dark-bg: #343a40;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--dark-bg);
+}
+
+h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--dark-bg);
+}
+
+p.section-description {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-nav {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+
+/* --- Header & Navigation --- */
+header {
+    background: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.8em;
+    color: var(--dark-bg);
+}
+
+.logo span {
+    color: var(--primary-color);
+    font-weight: normal;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+}
+
+nav a:not(.btn):hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Hero Section --- */
+.hero {
+    background: var(--light-bg);
+    padding: 100px 0;
+    text-align: left;
+}
+
+.hero .container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.early-access-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.early-access-form input[type="email"] {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-grow: 1;
+    max-width: 300px;
+    font-size: 1em;
+}
+
+.small-text {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-mockup {
+    background: var(--dark-bg);
+    color: white;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+
+/* --- Features Section --- */
+.features {
+    background: white;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.feature-item {
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.feature-item i {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-item h4 {
+    margin-bottom: 10px;
+    font-size: 1.25em;
+    color: var(--dark-bg);
+}
+
+
+/* --- About Section (Value Proposition) --- */
+.about {
+    background: var(--light-bg);
+    padding: 100px 0;
+    text-align: left;
+}
+
+.about .container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-content {
+    max-width: 800px;
+}
+
+.about-content h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.benefit-list {
+    list-style: none;
+    margin-top: 30px;
+    padding-left: 0;
+}
+
+.benefit-list li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.benefit-list i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+
+/* --- Call to Action (CTA) --- */
+.cta {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 80px 20px;
+}
+
+.cta h2 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+/* --- Footer --- */
+footer {
+    background: var(--dark-bg);
+    color: white;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        margin-bottom: 40px;
+    }
+    .hero h2 {
+        font-size: 2.8em;
+    }
+    .hero-image {
+        order: -1; /* Move image above content on small screens */
+    }
+    .dashboard-mockup {
+        max-width: 100%;
+        height: 250px;
+    }
+    .early-access-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .early-access-form input[type="email"] {
+        max-width: 100%;
+    }
+    nav {
+        display: none; /* Simple mobile adjustment: hide nav, usually replaced by a hamburger icon */
+    }
+    header .container {
+        justify-content: center;
+    }
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-links {
+        margin-top: 15px;
+    }
+}
